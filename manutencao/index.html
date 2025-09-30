@@ -1,0 +1,167 @@
+<html>
+
+<head>
+  <base href="/" />
+  <meta charset="UTF-8">
+  <title>Sistema de Login - Cadastro e Recuperação</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Página de Login -->
+  <div class="container" id="loginPage">
+    <h1>🚗 Sistema de Veículos</h1>
+    <h2>Bem-vindo!</h2>
+    <p class="subtitle">Faça login para continuar</p>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <div class="error-message" id="loginEmailError">Email inválido</div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="loginPassword" placeholder="Senha" required>
+        <div class="error-message" id="loginPasswordError">Senha incorreta</div>
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div class="links">
+      <a href="javascript:void(0)" onclick="showPage('forgotPasswordPage')">Esqueceu sua senha?</a>
+      <a href="javascript:void(0)" onclick="showPage('registerPage')">Criar nova conta</a>
+    </div>
+  </div>
+
+  <!-- Página de Recuperação de Senha -->
+  <div class="container" id="forgotPasswordPage" style="display: none;">
+    <h1>🔒 Recuperar Senha</h1>
+    <p class="subtitle">Enviaremos instruções para seu email</p>
+
+    <form id="forgotPasswordForm">
+      <div class="form-group">
+        <input type="email" id="recoveryEmail" placeholder="Digite seu email cadastrado" required>
+        <div class="error-message" id="recoveryEmailError">Email não cadastrado</div>
+      </div>
+
+      <button type="submit">Enviar instruções</button>
+      <div class="success-message" id="recoverySuccess">
+        ✓ Email enviado com sucesso! Verifique sua caixa de entrada.
+      </div>
+    </form>
+
+    <div class="links">
+      <a href="javascript:void(0)" onclick="showPage('loginPage')">← Voltar ao login</a>
+    </div>
+  </div>
+
+  <!-- Página de Cadastro -->
+  <div class="container" id="registerPage" style="display: none;">
+    <h1>📝 Criar Conta</h1>
+    <p class="subtitle">Preencha seus dados para começar</p>
+
+    <form id="registerForm">
+      <div class="form-group">
+        <input type="text" id="fullName" placeholder="Nome completo" required>
+        <div class="error-message" id="nameError">Nome deve ter pelo menos 3 caracteres</div>
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Email" required>
+        <div class="error-message" id="emailError">Email inválido ou já cadastrado</div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Senha" required>
+        <div class="password-requirements">
+          <ul>
+            <li id="lengthCheck">Mínimo de 8 caracteres</li>
+            <li id="upperCheck">Uma letra maiúscula</li>
+            <li id="numberCheck">Um número</li>
+            <li id="specialCheck">Um caractere especial (!@#$%^&*)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="confirmPassword" placeholder="Confirme a senha" required>
+        <div class="error-message" id="passwordError">As senhas não coincidem</div>
+      </div>
+
+      <button type="submit">Criar conta</button>
+      <div class="success-message" id="registerSuccess">
+        ✓ Conta criada com sucesso! Redirecionando...
+      </div>
+    </form>
+
+    <div class="links">
+      <a href="javascript:void(0)" onclick="showPage('loginPage')">← Já tem uma conta? Faça login</a>
+    </div>
+  </div>
+
+  <!-- Página Principal (Home) -->
+  <div class="container wide" id="homePage" style="display: none;">
+    <button class="logout-btn" onclick="logout()">Sair</button>
+
+    <div class="welcome-header">
+      <h1>🚗 Sistema de Gestão de Veículos</h1>
+      <p id="welcomeMsg">Bem-vindo!</p>
+    </div>
+
+    <div class="vehicle-form-container">
+      <h2 id="formTitle">Cadastrar Novo Veículo</h2>
+      <form id="vehicleForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" placeholder="Ex: Toyota" required>
+            <div class="error-message" id="marcaError">Campo obrigatório</div>
+          </div>
+
+          <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" placeholder="Ex: Corolla" required>
+            <div class="error-message" id="modeloError">Campo obrigatório</div>
+          </div>
+
+          <div class="form-group">
+            <label for="ano">Ano</label>
+            <input type="number" id="ano" placeholder="Ex: 2024" min="1900" max="2030" required>
+            <div class="error-message" id="anoError">Ano inválido</div>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn">Cadastrar Veículo</button>
+        <button type="button" class="secondary" id="cancelBtn" style="display: none;" onclick="cancelEdit()">Cancelar
+          Edição</button>
+      </form>
+    </div>
+
+    <h2>Veículos Cadastrados</h2>
+    <div id="tableContainer">
+      <table id="vehicleTable">
+        <thead>
+          <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 9l-7 7-7-7" />
+        </svg>
+        <p>Nenhum veículo cadastrado ainda</p>
+        <p style="font-size: 12px;">Adicione seu primeiro veículo usando o formulário acima</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>

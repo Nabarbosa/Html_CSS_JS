@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    animation: slideIn 0.5s ease;
+}
+
+.container.wide {
+    max-width: 800px;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1,
+h2 {
+    color: #161616;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.welcome-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#welcomeMsg {
+    font-size: 18px;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input.error {
+    border-color: #ff4444;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+button.secondary {
+    background: #f0f0f0;
+    color: #333;
+    margin-top: 5px;
+}
+
+button.secondary:hover {
+    background: #e0e0e0;
+}
+
+button.danger {
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+}
+
+button.edit {
+    background: linear-gradient(135deg, #ffa500, #ff6347);
+}
+
+button.small {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 14px;
+    margin: 0 5px;
+}
+
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links a {
+    color: #667eea;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.success-message {
+    background: #4caf50;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.password-requirements {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.password-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.password-requirements li {
+    padding: 5px 0;
+    color: #666;
+    font-size: 13px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.password-requirements li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: #ff4444;
+}
+
+.password-requirements li.valid::before {
+    content: '✓';
+    color: #4caf50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid #242424;
+    transition: background 0.3s;
+}
+
+tbody tr:hover {
+    background: #f8f9fa;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: auto;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+}
+
+.vehicle-form-container {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.empty-state svg {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+/* .info-box {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.info-box h3 {
+    margin: 0 0 10px 0;
+    color: #1976d2;
+    font-size: 14px;
+}
+
+.info-box p {
+    margin: 5px 0;
+    font-size: 13px;
+    color: #555;
+} */
+
+@media (max-width: 768px) {
+    .container.wide {
+        max-width: 100%;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    button.small {
+        width: 100%;
+        margin: 2px 0;
+    }
+}
